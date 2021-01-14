@@ -344,12 +344,10 @@ a:active {
   clip: rect(1px, 1px, 1px, 1px);
   white-space: nowrap;
 }
-
 .off-screen {
   left: -100vw;
   position: absolute;
 }
-
 .skip-link {
   background: var(--color-black);
   color: var(--color-white);
@@ -846,6 +844,7 @@ ul.row {
   display: block;
   text-decoration: none;
   padding-top: 45%;
+  opacity: 0;
 }
 
 .card-work .card-title a::after {
@@ -1212,12 +1211,12 @@ input:not(:placeholder-shown) ~ .form-field-icon::after {
 
 input:required:invalid:not(:focus):not(:placeholder-shown)
   ~ .form-field-icon::after {
-  content: '✘';
+  content: '';
   color: var(--error-color);
 }
 
 input:required:valid ~ .form-field-icon::after {
-  content: '✔';
+  content: '';
   color: var(--valid-color);
 }
 
