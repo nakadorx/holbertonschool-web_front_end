@@ -1,0 +1,44 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "author": "test",
+      "title": "fzefzerf",
+      "id": 2
+    },
+    {
+      "author": "fzefze",
+      "title": "fzefze",
+      "id": 3
+    },
+    {
+      "author": "fzefez",
+      "title": "reherh",
+      "id": 4
+    },
+    {
+      "author": "nbf",
+      "title": "ger",
+      "id": 5
+    },
+    {
+      "author": "",
+      "title": "",
+      "id": 6
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
