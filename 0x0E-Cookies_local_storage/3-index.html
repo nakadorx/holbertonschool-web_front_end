@@ -1,0 +1,71 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 3</title>
+  </head>
+  <body>
+    <div id="form">
+      <h2>Login to the website</h2>
+      <input id="firstname" placeholder="Firstname" />
+      <input id="email" placeholder="Email" />
+      <button onclick="setCookies()">Log me in</button>
+    </div>
+    <script type="application/javascript">
+      const setCookies = () => {
+        let expiration = new Date();
+        expiration.setTime(expiration.getTime() + 1000 * 10 * 24 * 60 * 60);
+        document.cookie = `firstname=${
+          document.getElementById('firstname').value
+        }; expires=${expiration.toUTCString()}`;
+        document.cookie = `email=${
+          document.getElementById('email').value
+        }; expires=${expiration.toUTCString()}`;
+      };
+      const getCookie = (name) => {
+        let cookie = {};
+        decodeURIComponent(document.cookie)
+          .split(';')
+          .forEach((element) => {
+            let [key, value] = element.split('=');
+            cookie[key.trim()] = value;
+          });
+        return cookie[name] || '';
+      };
+      const showForm = () => {
+        document.getElementById('form').style.display = 'block';
+      };
+      const hideForm = () => {
+        document.getElementById('form').style.display = 'none';
+      };
+      const deleteCookiesAndShowForm = () => {
+        document.getElementById('welcomeMessage').remove();
+        document.cookie = 'firstname';
+        document.cookie = 'email';
+        showForm();
+      };
+      const showWelcomeMessageOrForm = () => {
+        if (getCookie('firstname') && getCookie('email')) {
+          hideForm();
+          let wlcm = document.createElement('h1');
+          wlcm.innerText = `Welcome: ${getCookie('firstname')}`;
+          wlcm.setAttribute('id', 'welcomeMessage');
+          let logOutA = document.createElement('a');
+          logOutA.innerText = '(logout)';
+          logOutA.style.marginLeft = '10px';
+          logOutA.style.fontWeight = 'normal';
+          logOutA.style.fontStyle = 'italic';
+          logOutA.setAttribute('onclick', 'deleteCookiesAndShowForm()');
+          wlcm.appendChild(logOutA);
+          document.body.appendChild(wlcm);
+        } else {
+          showForm();
+        }
+      };
+      showWelcomeMessageOrForm();
+    </script>
+  </body>
+</html>

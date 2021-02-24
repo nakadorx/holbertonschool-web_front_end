@@ -1,0 +1,64 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
+  </head>
+  <body>
+    <div id="form">
+      <h2>Login to the website</h2>
+      <input id="firstname" placeholder="Firstname" />
+      <input id="email" placeholder="Email" />
+      <button onclick="setCookiesAndShowWelcomeMessage()">Log me in</button>
+    </div>
+    <script type="application/javascript">
+      const setCookies = () => {
+        Cookies.set('firstname', document.getElementById('firstname').value, {
+          expires: 10,
+        });
+        Cookies.set('email', document.getElementById('email').value, {
+          expires: 10,
+        });
+      };
+      const showForm = () => {
+        document.getElementById('form').style.display = 'block';
+      };
+      const hideForm = () => {
+        document.getElementById('form').style.display = 'none';
+      };
+      const deleteCookiesAndShowForm = () => {
+        document.getElementById('welcomeMessage').remove();
+        document.cookie = 'firstname';
+        document.cookie = 'email';
+        showForm();
+      };
+      const showWelcomeMessageOrForm = () => {
+        if (getCookie('firstname') && getCookie('email')) {
+          hideForm();
+          let wlcm = document.createElement('h1');
+          wlcm.innerText = `Welcome: ${getCookie('firstname')}`;
+          wlcm.setAttribute('id', 'welcomeMessage');
+          let logOutA = document.createElement('a');
+          logOutA.innerText = '(logout)';
+          logOutA.style.marginLeft = '10px';
+          logOutA.style.fontWeight = 'normal';
+          logOutA.style.fontStyle = 'italic';
+          logOutA.setAttribute('onclick', 'deleteCookiesAndShowForm()');
+          wlcm.appendChild(logOutA);
+          document.body.appendChild(wlcm);
+        } else {
+          showForm();
+        }
+      };
+      const setCookiesAndShowWelcomeMessage = () => {
+        setCookies();
+        showWelcomeMessageOrForm();
+      };
+      showWelcomeMessageOrForm();
+    </script>
+  </body>
+</html>
